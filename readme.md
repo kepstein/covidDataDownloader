@@ -1,11 +1,9 @@
 # Covid19 Data Downloader 
+![Deploy master branch](https://github.com/kepstein/covidDataDownloader/workflows/Deploy%20master%20branch/badge.svg?branch=master)
 
 This is a lightweight data downloading pipeline. We grab data from [New York Times' GitHub repo for Covid 19 data](https://github.com/nytimes/covid-19-data). 
 The project uses the Serverless Framework to deploy a Lambda Function and a CloudWatch Event to trigger that Lambda
 Function every 4 hours. 
-
-## Build & Deploy Status'
-![Deploy master branch](https://github.com/kepstein/covidDataDownloader/workflows/Deploy%20master%20branch/badge.svg?branch=master)
 
 ## Architecture
 ![Architecture](docs/architecture.png)
@@ -16,7 +14,8 @@ down with a Lambda Function which then uploads the data to a S3 bucket. The Lamb
 CloudWatch Event. I used AWS Glue to create a table, and detect the 
 schema of the data. Because the data is clean, and simple Glue was able to infer the schema perfectly. Once the Glue job completes, 
 I have a usable table in Amazon Athena, with which I can explore the data using some standard SQL queries. The final steps 
-in this process are to create a dataset in AWS QuickSight, and then create some visualizations.
+in this process are to create a dataset in AWS QuickSight, and then create some visualizations. QuickSight automatically refreshes 
+its data once every day. 
 
 ## Deployment
 
@@ -27,3 +26,14 @@ also packages up the Lambda Function and puts the code on a S3 bucket, which is 
 The final part of the deployment process uses [GitHub Actions](https://github.com/features/actions) to do the deployment. 
 The team that created the Serverless Framework also have published a GitHub action that can be used to deploy Serverless
 projects. GitHub Actions creates build badges to show the status of the build (see above)  
+
+## Example visualizations from QuickSight
+
+This  visualization shows the daily cumulative cases and deaths, aggregated for all States. 
+![Bar chart showing daily, cumulative cases and deaths for all states](docs/bar-chart-all%20states.png)
+
+This visualization shows cumulative cases by County
+![Map cumulative cases fr counties](docs/counties-cases-map.png)
+
+## To Do
+- Refactor serverless.yml. It's a bit of a mess right now. 
