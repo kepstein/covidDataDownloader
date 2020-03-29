@@ -231,3 +231,9 @@ dmypy.json
 .pyre/
 
 # End of https://www.gitignore.io/api/macos,python,pycharm
+
+### Serverless ###
+# Ignore build directory
+.serverless
+
+# End of https://www.gitignore.io/api/serverless

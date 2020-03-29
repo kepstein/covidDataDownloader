@@ -1,0 +1,44 @@
+service: Covid19DataPipeline
+
+provider:
+  name: aws
+  runtime: python3.7
+
+# you can overwrite defaults here
+  stage: prod
+  region: us-east-1
+
+# you can add statements to the Lambda function's IAM Role here
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action: ['s3:PutObject']
+      Resource: ['arn:aws:s3:::mybigdatabucket/covid19/nyt/*']
+
+# you can define service wide environment variables here
+#  environment:
+#    variable1: value1
+
+package:
+  include:
+    - main.py
+  exclude:
+    - .idea/**
+    - .gitignore
+    - requirements.txt
+    - serverless.yml
+    - package-lock.json
+    - package.json
+
+functions:
+  updateCovidData:
+    description: Downloads Covid19 data from NYT's GitHub repo
+    handler: main.lambda_handler
+    events:
+      - schedule:
+          name: updateCovidData4H
+          description: 'Download Covid19 data from NYT GitHub every 4 hours'
+          rate: cron(0 0,4,8,12,16,20 * * ? *) # Events are always in UTC. PT times are 06,10,14,18
+          enabled: true
+#
+#plugins:
+#  - serverless-python-requirements
