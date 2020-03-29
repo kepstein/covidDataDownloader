@@ -30,10 +30,13 @@ projects. GitHub Actions creates build badges to show the status of the build (s
 ## Example visualizations from QuickSight
 
 This  visualization shows the daily cumulative cases and deaths, aggregated for all States. 
-![Bar chart showing daily, cumulative cases and deaths for all states](docs/bar-chart-all%20states.png)
+![Bar chart showing daily, cumulative cases and deaths for all states](docs/daily-totals.png)
 
 This visualization shows cumulative cases by County
 ![Map cumulative cases fr counties](docs/counties-cases-map.png)
+
+Comparison analysis of the escalation of the virus by state
+![Comparative escalation analysis](docs/states-covid-growth.png)
 
 ## To Do
 - Refactor serverless.yml. It's a bit of a mess right now. 
