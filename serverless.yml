@@ -14,20 +14,11 @@ provider:
       Action: ['s3:PutObject']
       Resource: ['arn:aws:s3:::mybigdatabucket/covid19/nyt/*']
 
-# you can define service wide environment variables here
-#  environment:
-#    variable1: value1
-
 package:
   include:
     - main.py
   exclude:
-    - .idea/**
-    - .gitignore
-    - requirements.txt
-    - serverless.yml
-    - package-lock.json
-    - package.json
+    - ./**/**
 
 functions:
   updateCovidData:
@@ -39,6 +30,3 @@ functions:
           description: 'Download Covid19 data from NYT GitHub every 4 hours'
           rate: cron(0 3,7,11,15,19,23 * * ? *) # Events are always in UTC. PT times are 00,04,08,12,16,20
           enabled: true
-#
-#plugins:
-#  - serverless-python-requirements

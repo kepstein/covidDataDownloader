@@ -39,4 +39,4 @@ Comparison analysis of the escalation of the virus by state
 ![Comparative escalation analysis](docs/states-covid-growth.png)
 
 ## To Do
-- Refactor serverless.yml. It's a bit of a mess right now. 
+- ~~Refactor serverless.yml. It's a bit of a mess right now.~~ 
