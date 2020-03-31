@@ -1,4 +1,4 @@
-service: Covid19DataPipeline
+
 
 provider:
   name: aws
@@ -20,7 +20,7 @@ package:
   exclude:
     - ./**/**
 
-nctions:
+functions:
   updateCovidData:
     description: Downloads Covid19 data from NYT's GitHub repo
     handler: main.lambda_handler
