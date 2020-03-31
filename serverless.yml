@@ -1,4 +1,4 @@
-
+service: Covid19DataPipeline
 
 provider:
   name: aws
