@@ -24,6 +24,7 @@ functions:
   updateCovidData:
     description: Downloads Covid19 data from NYT's GitHub repo
     handler: main.lambda_handler
+    MemorySize: 1232
     events:
       - schedule:
           name: updateCovidData4H
